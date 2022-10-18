@@ -22,7 +22,7 @@ const App = () => {
         <Container maxwidth = 'lg'>
             <AppBar className={classes.appBar} position="static" color="inherit">
                 <img className={classes.images} src={hotkitchen} alt="Hot Kitchen" height="120"/>
-                <Typography className={classes.heading} variant="h3" align="center">Khaana Banana</Typography>
+                <Typography className={classes.heading} variant="h3" align="center">Hot Kitchen</Typography>
             </AppBar>
             <Grid item xs={12} sm={7}>
                 <Form/>
