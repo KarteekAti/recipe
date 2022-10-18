@@ -24,17 +24,9 @@ const App = () => {
                 <img className={classes.images} src={hotkitchen} alt="Hot Kitchen" height="120"/>
                 <Typography className={classes.heading} variant="h3" align="center">Khaana Banana</Typography>
             </AppBar>
-            <Grow in>
-                <Grid container justifyContent="space-between" alignItems="stretch" spacing={3}>
-                    <Grid item xs={12} sm={7}>
-                        <Posts/>
-                    </Grid>
-                    <Grid item xs={12} sm={7}>
-                        <Form/>
-                    </Grid>
-                    
-                </Grid>
-            </Grow>
+            <Grid item xs={12} sm={7}>
+                <Form/>
+            </Grid>
         </Container>
     );
 }
