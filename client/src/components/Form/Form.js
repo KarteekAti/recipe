@@ -29,7 +29,7 @@ const Form = () => {
   });
   const [ingredients, setIngredient] = useState([""]);
   const [tags, setTags] = useState("");
-  const { register, handleSubmit, control, errors } = useForm();
+  const { register, handleSubmit, control } = useForm();
 
   const dispatch = useDispatch();
 
@@ -64,8 +64,7 @@ const Form = () => {
 
   const handleSubmits = (data) => {
     //e.preventDefault();
-    console.log(postData);
-    dispatch(createPost(postData));
+    //dispatch(createPost(postData));
   };
 
   return (
@@ -77,48 +76,69 @@ const Form = () => {
         onSubmit={handleSubmit(handleSubmits)}
       >
         <Typography>Creating a Recipe</Typography>
-
         <Controller
           control={control}
           name="title"
-          render={({ field: { onChange, value, ref } }) => (
+          rules={{ required: true }}
+          defaultValue=""
+          render={({
+            field: { onChange, ref, ...field },
+            fieldState: { error },
+          }) => (
             <TextField
+              {...field}
               required
+              id="title"
               variant="outlined"
               label="Title"
               fullWidth
-              //   onChange={(e) => onChange={(e) => {
+              innerRef={ref}
+              onChange={(e) => {
+                onChange(e);
+                setPostData({ ...postData, title: e.target.value });
+              }}
+              error={!!error}
+              helperText={error?.message}
+            ></TextField>
+          )}
+        />
 
-              //   }}
+        <Controller
+          control={control}
+          name="description"
+          render={({
+            field: { onChange, ref, ...field },
+            fieldState: { error },
+          }) => (
+            <TextField
+              {...field}
+              multiline
+              id="description"
+              required
+              variant="outlined"
+              label="Description"
+              fullWidth
+              ref={ref}
+              onChange={(e) => {
+                onChange(e);
+                setPostData({ ...postData, description: e.target.value });
+              }}
+              error={!!error}
+              helperText={error?.message}
             ></TextField>
           )}
           rules={{ required: true }}
         />
 
         <TextField
-          name="description"
-          multiline
-          required
-          variant="outlined"
-          label="Description"
-          fullWidth
-          {...register("description", { required: "Description Required" })}
-          onChange={(e) =>
-            setPostData({ ...postData, description: e.target.value })
-          }
-          error={!!errors?.description}
-          helperText={errors?.description ? errors.description.message : ""}
-        ></TextField>
-        <TextField
           name="cuisine"
           variant="outlined"
           required
           label="Cuisine"
           fullWidth
-          {...register("cuisine", { required: "Cuisine Required" })}
-          onChange={(e) => setPostData({ ...postData, cusine: e.target.value })}
-          error={!!errors?.cuisine}
-          helperText={errors?.cuisine ? errors.cuisine.message : ""}
+          onChange={(e) =>
+            setPostData({ ...postData, cuisine: e.target.value })
+          }
         ></TextField>
         {ingredients.map((ingredient, index) => (
           <div key={index} style={{ display: "inline-flex", width: "100%" }}>
@@ -128,10 +148,7 @@ const Form = () => {
               required
               label={index === 0 ? "Ingredients" : "Ingredient " + index}
               fullWidth
-              {...register("ingredient", { required: "Ingredient Required" })}
               onChange={(e) => changeIngredient(index, e)}
-              error={!!errors?.ingredient}
-              helperText={errors?.ingredient ? errors.ingredient.message : ""}
             ></TextField>
             <IconButton
               onClick={(e) => {
@@ -158,11 +175,6 @@ const Form = () => {
           label="Tags"
           fullWidth
           onChange={(e) => addTags(e)}
-          {...register("tags", { required: "Tags Required" })}
-          error={!!errors?.tags}
-          helperText={
-            errors?.tags ? errors.tags.message : "Comma Separated Tags"
-          }
         ></TextField>
         <div className={classes.fileInput}>
           <FileBase
