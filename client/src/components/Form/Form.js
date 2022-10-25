@@ -75,7 +75,7 @@ const Form = () => {
         noValidate
         onSubmit={handleSubmit(handleSubmits)}
       >
-        <Typography>Creating a Recipe</Typography>
+        <Typography variant="h2">Creating a Recipe</Typography>
         <Controller
           control={control}
           name="title"

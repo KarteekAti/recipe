@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
 import hotkitchen from "./images/hot_kitchen.png";
 import { useDispatch } from "react-redux";
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { getPosts } from "./actions/posts.js";
 import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
@@ -29,9 +29,18 @@ const App = () => {
           Hot Kitchen
         </Typography>
       </AppBar>
-      <Grid item xs={12} sm={7}>
-        <Form />
-      </Grid>
+      <BrowserRouter>
+        <Grow in>
+          <Container>
+            <Grid item xs={12} sm={7}>
+              <Posts />
+            </Grid>
+          </Container>
+        </Grow>
+        <Routes>
+          <Route path="/create" element={<Form />} />
+        </Routes>
+      </BrowserRouter>
     </Container>
   );
 };
