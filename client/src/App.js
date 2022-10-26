@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container } from "@material-ui/core";
+import { Container, CssBaseline } from "@material-ui/core";
 
 import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -16,15 +16,18 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <Container maxWidth="xl">
+    <>
+      <CssBaseline />
       <Appbar />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/create" element={<Form />} />
-        </Routes>
-      </BrowserRouter>
-    </Container>
+      <Container maxWidth="xl">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/create" element={<Form />} />
+          </Routes>
+        </BrowserRouter>
+      </Container>
+    </>
   );
 };
 
