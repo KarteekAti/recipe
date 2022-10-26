@@ -38,14 +38,24 @@ const Post = ({ post }) => {
           {post.title}
         </Typography>
       </CardContent>
-      <div className={classes.details}>
-        <Typography variant="body2" color="textSecondary">
+      <div className={classes.details} style={{ wordBreak: "break-word" }}>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          style={{
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "-webkit-box",
+            WebkitLineClamp: "2",
+            WebkitBoxOrient: "vertical",
+          }}
+        >
           {post.description}
         </Typography>
       </div>
       <CardActions className={classes.cardActions}>
         <Button size="small" color="primary" onClick={() => {}}>
-          <ThumbupAltIcon fontSize="small" /> {post.likeCount}
+          <ThumbupAltIcon fontSize="small" /> &nbsp; {post.likeCount}
         </Button>
         <Button size="small" color="danger" onClick={() => {}}>
           <DeleteIcon fontSize="small" />

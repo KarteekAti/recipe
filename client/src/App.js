@@ -1,15 +1,14 @@
 import React, { useEffect } from "react";
-import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
-import hotkitchen from "./images/hot_kitchen.png";
+import { Container } from "@material-ui/core";
+
 import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { getPosts } from "./actions/posts.js";
-import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
-import useStyles from "./styles";
+import Home from "./components/Home/home";
+import Appbar from "./components/AppBar/Appbar";
 
 const App = () => {
-  const classes = useStyles();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,27 +16,11 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <Container maxwidth="lg">
-      <AppBar className={classes.appBar} position="static" color="inherit">
-        <img
-          className={classes.images}
-          src={hotkitchen}
-          alt="Hot Kitchen"
-          height="120"
-        />
-        <Typography className={classes.heading} variant="h3" align="center">
-          Hot Kitchen
-        </Typography>
-      </AppBar>
+    <Container maxWidth="xl">
+      <Appbar />
       <BrowserRouter>
-        <Grow in>
-          <Container>
-            <Grid item xs={12} sm={7}>
-              <Posts />
-            </Grid>
-          </Container>
-        </Grow>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/create" element={<Form />} />
         </Routes>
       </BrowserRouter>
