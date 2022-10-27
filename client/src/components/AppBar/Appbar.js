@@ -24,13 +24,13 @@ const Appbar = () => {
           <Typography
             variant="h5"
             style={{ color: "black" }}
-            sx={{ display: { xs: "none", sm: "block" } }}
+            sx={{ display: { xs: "none", sm: "block" }, fontFamily: "Teko" }}
           >
             Hot Kitchen
           </Typography>
           <Box sx={{ flexGrow: 0.8 }} />
           <SearchBar
-            cancelOn
+            cancelOnEscape
             Escape
             style={{
               borderRadius: "40px",
@@ -47,6 +47,13 @@ const Appbar = () => {
             style={{ color: "black" }}
           >
             <LoginIcon />
+            <Typography
+              variant="body1"
+              style={{ color: "black" }}
+              sx={{ display: { xs: "none", sm: "block" }, fontWeight: "bold" }}
+            >
+              Login
+            </Typography>
           </IconButton>
         </Toolbar>
       </AppBar>

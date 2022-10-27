@@ -1,24 +1,33 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Grid, CircularProgress } from "@material-ui/core";
+import { Grid, CircularProgress, CssBaseline } from "@material-ui/core";
 import Post from "./Post/Post";
 import useStyles from "./style";
+import moment from "moment";
 
 const Posts = () => {
   const posts = useSelector((state) => state.posts);
   const classes = useStyles();
-  console.log(posts);
   return !posts.length ? (
-    <CircularProgress />
-  ) : (
-    <Grid
-      className={classes.mainContainer}
-      container
-      spacing={3}
-      columns={{ xs: 4, md: 12 }}
+    <div
+      style={{
+        height: "90vh",
+        display: "flex",
+        flexFlow: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
     >
+      {console.log(new Date(Date.now()))}
+      {console.log(moment(Date.now()).fromNow())}
+      <CircularProgress size="10%" />
+      <h4>Loading...</h4>
+    </div>
+  ) : (
+    <Grid className={classes.mainContainer} container spacing={3}>
       {posts.map((post) => (
-        <Grid item key={post.id} xs={12} sm={6}>
+        <Grid item key={post.id}>
+          <CssBaseline />
           <Post post={post}></Post>
         </Grid>
       ))}

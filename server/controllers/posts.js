@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import PostMessage from "../models/postMessage.js";
+import PostCuisine from "../models/cuisines.js";
 
 export const getPosts = async (req, res) => {
   try {
@@ -22,5 +23,15 @@ export const createPost = async (req, res) => {
     res.status(201).json(newPost);
   } catch (error) {
     res.status(409).json({ message: error.message });
+  }
+};
+
+export const getCuisines = async (req, res) => {
+  try {
+    const postCuisine = await PostCuisine.find();
+    console.log(postCuisine);
+    res.status(200).json(postCuisine);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
   }
 };

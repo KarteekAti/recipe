@@ -6,6 +6,7 @@ import {
   CardMedia,
   Button,
   Typography,
+  CssBaseline,
 } from "@material-ui/core";
 import ThumbupAltIcon from "@material-ui/icons/ThumbUpAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -16,52 +17,56 @@ import useStyles from "./style";
 const Post = ({ post }) => {
   const classes = useStyles();
   return (
-    <Card className={classes.card}>
-      <CardMedia
-        className={classes.media}
-        image={post.selectedFile}
-        title={post.title}
-      />
-      <div className={classes.overlay}>
-        <Typography variant="h6">{post.creator}</Typography>{" "}
-        <Typography variant="body2">
-          {moment(post.createdAt).fromNow()}
-        </Typography>
-      </div>
-      <div className={classes.overlay2}>
-        <Button style={{ color: "white" }} size="small" onClick={() => {}}>
-          <MoreHorizIcon fontSize="default" />
-        </Button>
-      </div>
-      <CardContent>
-        <Typography className={classes.title} variant="h5">
-          {post.title}
-        </Typography>
-      </CardContent>
-      <div className={classes.details} style={{ wordBreak: "break-word" }}>
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          style={{
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            display: "-webkit-box",
-            WebkitLineClamp: "2",
-            WebkitBoxOrient: "vertical",
-          }}
-        >
-          {post.description}
-        </Typography>
-      </div>
-      <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" onClick={() => {}}>
-          <ThumbupAltIcon fontSize="small" /> &nbsp; {post.likeCount}
-        </Button>
-        <Button size="small" color="danger" onClick={() => {}}>
-          <DeleteIcon fontSize="small" />
-        </Button>
-      </CardActions>
-    </Card>
+    <>
+      
+      <CssBaseline />
+      <Card className={classes.card}>
+        <CardMedia
+          className={classes.media}
+          image={post.selectedFile}
+          title={post.title}
+        />
+        <div className={classes.overlay}>
+          <Typography variant="h6">{post.creator}</Typography>{" "}
+          <Typography variant="body2">
+            {moment(post.createdAt).fromNow()}
+          </Typography>
+        </div>
+        <div className={classes.overlay2}>
+          <Button style={{ color: "white" }} size="small" onClick={() => {}}>
+            <MoreHorizIcon fontSize="default" />
+          </Button>
+        </div>
+        <CardContent>
+          <Typography className={classes.title} variant="h5">
+            {post.title}
+          </Typography>
+        </CardContent>
+        <div className={classes.details} style={{ wordBreak: "break-word" }}>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            style={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitLineClamp: "2",
+              WebkitBoxOrient: "vertical",
+            }}
+          >
+            {post.description}
+          </Typography>
+        </div>
+        <CardActions className={classes.cardActions}>
+          <Button size="small" color="primary" onClick={() => {}}>
+            <ThumbupAltIcon fontSize="small" /> &nbsp; {post.likeCount}
+          </Button>
+          <Button size="small" color="danger" onClick={() => {}}>
+            <DeleteIcon fontSize="small" />
+          </Button>
+        </CardActions>
+      </Card>
+    </>
   );
 };
 

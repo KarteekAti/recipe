@@ -18,3 +18,11 @@ export const createPost = (post) => async (dispatch) => {
     console.log(error);
   }
 };
+export const getCuisines = () => async (dispatch) => {
+  try {
+    const { data } = await api.getCuisines();
+    dispatch({ type: "CUISINES", payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
