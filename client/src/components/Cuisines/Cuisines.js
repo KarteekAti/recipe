@@ -1,44 +1,62 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Grid, Typography, Button } from "@mui/material";
 import { ImageList } from "@mui/material";
 import { Image } from "mui-image";
 
 const Cuisines = () => {
   const cuisines = useSelector((state) => state.cuisines);
   return cuisines.length ? (
-    <Container sx={{ display: "flex", p: 2, m: 1 }}>
+    <Grid
+      container
+      sx={{
+        m: 1,
+        p: 2,
+        justifyContent: "center",
+        alignItems: "center",
+        overflow: "hidden",
+      }}
+    >
       {cuisines.map((item) => (
-        <Box
-          sx={{
-            width: { xs: 75, sm: 100 },
-            height: { xs: 75, sm: 100 },
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-            borderRadius: "50px",
-            m: 1,
-          }}
-          style={{
-            backgroundImage: `url(${item.selectedFile})`,
-            backgroundSize: 100,
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            backgroundBlendMode: "darken",
-          }}
-          duration="10"
-        >
-          {/* <Image
-            src={item.selectedFile}
-            sx={{ borderRadius: "50px" }}
-            alt={item.cuisine}
-          /> */}
-          <Typography variant="h6" sx={{ color: "white" }}>
-            {item.cuisine}
-          </Typography>
-        </Box>
+        <Grid item key={item._id}>
+          <Box
+            sx={{
+              width: { xs: 100, sm: 100 },
+              height: { xs: 100, sm: 100 },
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              textAlign: "center",
+              borderRadius: "50px",
+              m: 1,
+            }}
+            style={{
+              backgroundImage: `url(${item.selectedFile})`,
+              backgroundSize: 150,
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              backgroundBlendMode: "darken",
+            }}
+            duration="10"
+          >
+            <Button
+              sx={{
+                textTransform: "none",
+                borderRadius: "50px",
+                width: { xs: 75, sm: 100 },
+                height: { xs: 75, sm: 100 },
+              }}
+            >
+              <Typography
+                variant="p"
+                sx={{ color: "white", fontWeight: { xs: 600, sm: 700 } }}
+              >
+                {item.cuisine}
+              </Typography>
+            </Button>
+          </Box>
+        </Grid>
       ))}
-    </Container>
+    </Grid>
   ) : null;
 };
 

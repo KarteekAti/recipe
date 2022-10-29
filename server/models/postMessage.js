@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import moment from "moment";
 
 const postSchema = mongoose.Schema({
   postId: String,
@@ -15,7 +16,7 @@ const postSchema = mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" }),
+    default: Date.now,
   },
 });
 

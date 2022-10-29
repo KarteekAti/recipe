@@ -105,10 +105,11 @@ const Form = () => {
           <Controller
             control={control}
             name="description"
+            rules={{ required: true, minLength: 200 }}
             defaultValue=""
             render={({
               field: { onChange, ref, ...field },
-              fieldState: { error },
+              fieldState: { invalid, error },
             }) => (
               <TextField
                 {...field}
@@ -118,16 +119,15 @@ const Form = () => {
                 variant="outlined"
                 label="Description"
                 fullWidth
-                ref={ref}
+                innerRef={ref}
                 onChange={(e) => {
                   onChange(e);
                   setPostData({ ...postData, description: e.target.value });
                 }}
-                error={!!error}
+                error={invalid}
                 helperText={error?.message}
               ></TextField>
             )}
-            rules={{ required: true }}
           />
 
           <Controller

@@ -8,26 +8,25 @@ import moment from "moment";
 const Posts = () => {
   const posts = useSelector((state) => state.posts);
   const classes = useStyles();
+  const date = new Date(moment.utc());
+  console.log(date);
   return !posts.length ? (
     <div
       style={{
-        height: "90vh",
+        height: "93.5vh",
         display: "flex",
-        flexFlow: "column",
         alignItems: "center",
         justifyContent: "center",
+        flexFlow: "column",
       }}
     >
-      {console.log(new Date(Date.now()))}
-      {console.log(moment(Date.now()).fromNow())}
-      <CircularProgress size="10%" />
-      <h4>Loading...</h4>
+      <CircularProgress size="10vh" />
+      <h3>Loading...</h3>
     </div>
   ) : (
-    <Grid className={classes.mainContainer} container spacing={3}>
+    <Grid container spacing={2}>
       {posts.map((post) => (
-        <Grid item key={post.id}>
-          <CssBaseline />
+        <Grid item key={post.id} xs={6} sm={4} md={2}>
           <Post post={post}></Post>
         </Grid>
       ))}

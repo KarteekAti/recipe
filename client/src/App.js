@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { Container, CssBaseline } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { getPosts, getCuisines } from "./actions/posts.js";
 import Appbar from "./components/AppBar/Appbar";
 import Home from "./components/Home/home";
 import Form from "./components/Form/Form";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -15,9 +16,13 @@ const App = () => {
     dispatch(getPosts());
   }, [dispatch]);
 
+  var rootStyle = {
+    backgroundColor: "#FFE8D8",
+    height: "100vh",
+  };
+
   return (
-    <div style={{ backgroundColor: "#FFE8D8", height: "100%" }}>
-      <CssBaseline />
+    <div style={rootStyle}>
       <Appbar />
       <Container maxWidth="xl">
         <BrowserRouter>
@@ -27,6 +32,7 @@ const App = () => {
           </Routes>
         </BrowserRouter>
       </Container>
+      <Footer />
     </div>
   );
 };
