@@ -45,6 +45,7 @@ const Cuisines = () => {
                 width: { xs: 75, sm: 100 },
                 height: { xs: 75, sm: 100 },
               }}
+              onClick={() => console.log(item._id)}
             >
               <Typography
                 variant="p"

@@ -75,7 +75,14 @@ const Post = ({ post }) => {
           </Typography>
         </div>
         <CardActions className={classes.cardActions}>
-          <Button size="small" color="primary" onClick={() => {}}>
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => {
+              post.likeCount += 1;
+              console.log(post.likeCount);
+            }}
+          >
             <ThumbupAltIcon fontSize="small" /> &nbsp; {post.likeCount}
           </Button>
           <Button size="small" color="danger" onClick={() => {}}>

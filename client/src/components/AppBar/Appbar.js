@@ -1,8 +1,9 @@
 import React from "react";
 import { AppBar, Typography, CssBaseline, Toolbar, Box } from "@mui/material";
 import hotkitchen from "../../images/hot_kitchen.png";
-import { IconButton } from "@mui/material";
+import { IconButton, Stack } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
+import GoogleIcon from "@mui/icons-material/Google";
 import SearchBar from "material-ui-search-bar";
 
 const Appbar = () => {
@@ -42,15 +43,18 @@ const Appbar = () => {
           />
           <Box sx={{ flexGrow: 1 }} />
           <IconButton
-            size="large"
+            component="label"
             aria-label="account of current user"
             style={{ color: "black" }}
+            sx={{ alignItems: "center", justifyContent: "center" }}
           >
-            <LoginIcon />
+            <GoogleIcon />
             <Typography
-              variant="body1"
-              style={{ color: "black" }}
-              sx={{ display: { xs: "none", sm: "block" }, fontWeight: "bold" }}
+              variant="body2"
+              sx={{
+                display: { xs: "none", sm: "block" },
+                fontWeight: "bold",
+              }}
             >
               Login
             </Typography>
