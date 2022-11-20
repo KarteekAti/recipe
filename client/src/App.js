@@ -1,21 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container } from "@material-ui/core";
-import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { getPosts, getCuisines } from "./actions/posts.js";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import Appbar from "./components/AppBar/Appbar";
 import Home from "./components/Home/home";
 import Form from "./components/Form/Form";
 import Footer from "./components/Footer/Footer";
+import Auth from "./components/Auth/Auth";
 
 const App = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getCuisines());
-    dispatch(getPosts());
-  }, [dispatch]);
-
   var rootStyle = {
     backgroundColor: "#FFE8D8",
     height: "100vh",
@@ -23,16 +16,21 @@ const App = () => {
 
   return (
     <div style={rootStyle}>
-      <Appbar />
-      <Container maxWidth="xl">
+      <GoogleOAuthProvider
+        clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
+      >
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/create" element={<Form />} />
-          </Routes>
+          <Appbar />
+          <Container maxWidth="xl">
+            <Routes>
+              <Route path="/" exact element={<Home />} />
+              <Route path="/create" element={<Form />} />
+              <Route path="/auth" exact element={<Auth />} />
+            </Routes>
+          </Container>
+          {/* <Footer /> */}
         </BrowserRouter>
-      </Container>
-      <Footer />
+      </GoogleOAuthProvider>
     </div>
   );
 };

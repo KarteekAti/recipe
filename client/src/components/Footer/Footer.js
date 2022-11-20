@@ -5,42 +5,37 @@ const Footer = () => {
   return (
     <Paper
       sx={{
-        marginTop: "calc(10% + 60px)",
-        position: "sticky",
-        height: "40px",
+        // marginTop: "calc(5% + 20px)",
         width: "100%",
+        position: "fixed",
         bottom: 0,
-        alignItems: "center",
-        justifyContent: "center",
+        width: "100%",
         backgroundColor: "#FFDDC4",
       }}
       component="footer"
-      square
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ color: "FFDDC4" }}>
         <Box
           sx={{
             flexGrow: 1,
             justifyContent: "center",
-            alignItems: "center",
             display: "flex",
             my: 1,
+            color: "#FFDDC4",
           }}
-        >
-          <div></div>
-        </Box>
+        ></Box>
 
         <Box
           sx={{
             flexGrow: 1,
-            alignItems: "center",
             justifyContent: "center",
             display: "flex",
             mb: 2,
+            color: "#FFDDC4",
           }}
         >
           <Typography variant="caption" color="initial">
-            Copyright ©2022.
+            Copyright ©2022. Limited
           </Typography>
         </Box>
       </Container>

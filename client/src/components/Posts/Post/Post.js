@@ -38,7 +38,7 @@ const Post = ({ post }) => {
           </div>
           <div className={classes.overlay2}>
             <Button style={{ color: "white" }} size="small" onClick={() => {}}>
-              <MoreHorizIcon fontSize="default" />
+              <MoreHorizIcon fontSize="medium" />
             </Button>
           </div>
           <CardContent style={{ padding: 0 }}>
@@ -85,7 +85,7 @@ const Post = ({ post }) => {
           >
             <ThumbupAltIcon fontSize="small" /> &nbsp; {post.likeCount}
           </Button>
-          <Button size="small" color="danger" onClick={() => {}}>
+          <Button size="small" color="secondary" onClick={() => {}}>
             <DeleteIcon fontSize="small" />
           </Button>
         </CardActions>

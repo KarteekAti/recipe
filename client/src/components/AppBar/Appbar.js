@@ -1,20 +1,43 @@
-import React from "react";
-import { AppBar, Typography, CssBaseline, Toolbar, Box } from "@mui/material";
-import hotkitchen from "../../images/hot_kitchen.png";
-import { IconButton, Stack } from "@mui/material";
-import LoginIcon from "@mui/icons-material/Login";
+import React, { useEffect, useState } from "react";
+import {
+  AppBar,
+  Typography,
+  Toolbar,
+  Box,
+  Avatar,
+  IconButton,
+  Button,
+} from "@mui/material";
+import { useDispatch } from "react-redux";
+import { useNavigate, useLocation } from "react-router-dom";
+import { searchFood } from "../../actions/posts";
 import GoogleIcon from "@mui/icons-material/Google";
+import hotkitchen from "../../images/hot_kitchen.png";
 import SearchBar from "material-ui-search-bar";
+import { Link } from "react-router-dom";
 
 const Appbar = () => {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const dispatch = useDispatch();
+  const history = useNavigate();
+  const location = useLocation();
+  const logout = () => {
+    dispatch({ type: "LOGOUT" });
+    history("/");
+    setUser(null);
+  };
+
+  useEffect(() => {
+    const token = user?.token;
+    setUser(JSON.parse(localStorage.getItem("profile")));
+  }, [location]);
+
   return (
     <>
-      <CssBaseline />
       <AppBar
         position="sticky"
         sx={{ display: "flex", backgroundColor: "#FFDDC4", boxShadow: "none" }}
       >
-        <CssBaseline />
         <Toolbar>
           <img
             sx={{ color: "black" }}
@@ -31,8 +54,8 @@ const Appbar = () => {
           </Typography>
           <Box sx={{ flexGrow: 0.8 }} />
           <SearchBar
+            onRequestSearch={(e) => dispatch(searchFood(e))}
             cancelOnEscape
-            Escape
             style={{
               borderRadius: "40px",
               height: "30px",
@@ -42,23 +65,36 @@ const Appbar = () => {
             placeholder="Search a Recipe"
           />
           <Box sx={{ flexGrow: 1 }} />
-          <IconButton
-            component="label"
-            aria-label="account of current user"
-            style={{ color: "black" }}
-            sx={{ alignItems: "center", justifyContent: "center" }}
-          >
-            <GoogleIcon />
-            <Typography
-              variant="body2"
-              sx={{
-                display: { xs: "none", sm: "block" },
-                fontWeight: "bold",
-              }}
+          {user ? (
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <Avatar className="" src={user.state.picture}></Avatar>
+              <Button
+                variant="contained"
+                onClick={logout}
+                sx={{ width: "20px" }}
+              >
+                Logout
+              </Button>
+            </div>
+          ) : (
+            <IconButton
+              component={Link}
+              to="/auth"
+              aria-label="account of current user"
+              style={{ color: "black" }}
             >
-              Login
-            </Typography>
-          </IconButton>
+              <GoogleIcon />
+              <Typography
+                variant="body2"
+                sx={{
+                  display: { xs: "none", sm: "block" },
+                  fontWeight: "bold",
+                }}
+              >
+                Login
+              </Typography>
+            </IconButton>
+          )}
         </Toolbar>
       </AppBar>
     </>

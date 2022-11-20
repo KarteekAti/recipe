@@ -19,6 +19,7 @@ const postSchema = mongoose.Schema({
     default: Date.now,
   },
 });
+postSchema.index({ name: "text", "profile.something": "text" });
 
 const PostMessage = mongoose.model("PostMessage", postSchema);
 

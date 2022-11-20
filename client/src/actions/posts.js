@@ -26,3 +26,12 @@ export const getCuisines = () => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const searchFood = (query) => async (dispatch) => {
+  try {
+    const { data } = await api.search(query);
+    dispatch({ type: "FETCH_ALL", payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};

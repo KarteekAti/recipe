@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { searchFood } from "../../actions/posts";
 import { Box, Grid, Typography, Button } from "@mui/material";
 import { ImageList } from "@mui/material";
 import { Image } from "mui-image";
 
 const Cuisines = () => {
+  const dispatch = useDispatch();
   const cuisines = useSelector((state) => state.cuisines);
   return cuisines.length ? (
     <Grid
@@ -45,7 +48,7 @@ const Cuisines = () => {
                 width: { xs: 75, sm: 100 },
                 height: { xs: 75, sm: 100 },
               }}
-              onClick={() => console.log(item._id)}
+              onClick={() => dispatch(searchFood(item.cuisine))}
             >
               <Typography
                 variant="p"
