@@ -91,3 +91,30 @@ export const search = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+export const likes = async (req, res) => {
+  try {
+    const userId = req.body.userId;
+    const postId = req.body.postId;
+    console.log("pass");
+    await PostMessage.updateOne(
+      { _id: postId },
+      { $addToSet: { likeCount: userId } }
+    );
+    res.status(201).json(postId);
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ error: error.message });
+  }
+};
+
+export const getRecipe = async (req, res) => {
+  try {
+    const id = req.headers["_id"];
+    const postMessage = await PostMessage.findOne({ _id: id });
+    res.status(201).json(postMessage);
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ error: error.message });
+  }
+};

@@ -9,3 +9,9 @@ export const userFetch = (token) =>
   axios.get(url + "/auth", { headers: { token: token } });
 export const search = (query) =>
   axios.get(url + "/search", { headers: { search: query } });
+export const getRecipe = (id) =>
+  axios.get(url + "/getRecipe", {
+    headers: {
+      _id: id,
+    },
+  });

@@ -35,3 +35,13 @@ export const searchFood = (query) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const getRecipe = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.getRecipe(id);
+    dispatch({ type: "RECIPE", payload: data });
+    console.log(data);
+  } catch (error) {
+    console.log(error.message);
+  }
+};

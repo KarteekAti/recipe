@@ -7,6 +7,7 @@ import Home from "./components/Home/home";
 import Form from "./components/Form/Form";
 import Footer from "./components/Footer/Footer";
 import Auth from "./components/Auth/Auth";
+import Recipe from "./components/Recipe/Recipe";
 
 const App = () => {
   var rootStyle = {
@@ -26,6 +27,7 @@ const App = () => {
               <Route path="/" exact element={<Home />} />
               <Route path="/create" element={<Form />} />
               <Route path="/auth" exact element={<Auth />} />
+              <Route path="/recipe/:id" element={<Recipe />} />
             </Routes>
           </Container>
           {/* <Footer /> */}

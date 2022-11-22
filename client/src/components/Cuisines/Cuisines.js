@@ -48,7 +48,10 @@ const Cuisines = () => {
                 width: { xs: 75, sm: 100 },
                 height: { xs: 75, sm: 100 },
               }}
-              onClick={() => dispatch(searchFood(item.cuisine))}
+              onClick={() => {
+                dispatch(searchFood(item.cuisine.split(" ")[0]));
+                
+              }}
             >
               <Typography
                 variant="p"

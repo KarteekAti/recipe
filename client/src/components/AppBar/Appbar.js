@@ -39,19 +39,21 @@ const Appbar = () => {
         sx={{ display: "flex", backgroundColor: "#FFDDC4", boxShadow: "none" }}
       >
         <Toolbar>
-          <img
-            sx={{ color: "black" }}
-            src={hotkitchen}
-            alt="Hot_Kitchen"
-            height="60"
-          />
-          <Typography
-            variant="h5"
-            style={{ color: "black" }}
-            sx={{ display: { xs: "none", sm: "block" }, fontFamily: "Teko" }}
-          >
-            Hot Kitchen
-          </Typography>
+          <Link to="/" style={{ textDecoration: "none", display: "contents" }}>
+            <img
+              sx={{ color: "black" }}
+              src={hotkitchen}
+              alt="Hot_Kitchen"
+              height="60"
+            />
+            <Typography
+              variant="h5"
+              style={{ color: "black" }}
+              sx={{ display: { xs: "none", sm: "block" }, fontFamily: "Teko" }}
+            >
+              Hot Kitchen
+            </Typography>
+          </Link>
           <Box sx={{ flexGrow: 0.8 }} />
           <SearchBar
             onRequestSearch={(e) => dispatch(searchFood(e))}

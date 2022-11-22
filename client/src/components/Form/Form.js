@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import {
   Container,
@@ -7,6 +7,7 @@ import {
   TextField,
   Button,
 } from "@material-ui/core";
+import { useNavigate } from "react-router-dom";
 import useStyles from "./style";
 import IconButton from "@material-ui/core/IconButton";
 import RemoveButton from "@material-ui/icons/Remove";
@@ -16,6 +17,8 @@ import { createPost } from "../../actions/posts";
 
 const Form = () => {
   const classes = useStyles();
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const navigate = useNavigate();
   const [postData, setPostData] = useState({
     title: "",
     description: "",
@@ -41,6 +44,7 @@ const Form = () => {
   const addIngredient = (e) => {
     setIngredient([...ingredients, " "]);
     setPostData({ ...postData, ingredients: ingredients });
+    console.log(user.state.name);
   };
 
   const deleteIngredients = (index) => {
@@ -64,6 +68,14 @@ const Form = () => {
     //e.preventDefault();
     dispatch(createPost(postData));
   };
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/auth");
+    } else {
+      setPostData({ ...postData, creator: user.state.name });
+    }
+  }, []);
 
   return (
     <Container maxWidth="lg">
